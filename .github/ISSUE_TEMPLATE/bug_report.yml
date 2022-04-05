@@ -1,0 +1,46 @@
+name: Bug Report
+description: "遇到问题就点我👀"
+title: "[Bug]: "
+labels: ["bug"]
+assignees: ["2096779623"]
+
+body:
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: "日志文件在 /data/data/com.termux/files/usr/var/log/msf.log"
+      placeholder: |
+        日志文件放在这里
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: 截图
+    validations:
+      required: false
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 如何重现
+      description: 怎么复现这个bug
+      placeholder: |
+        1.  
+
+        2.
+    validations:
+      required: false
+  - type: textarea
+    id: info
+    attributes:
+      label: 更多信息
+      description: 可以详细描述一下
+      placeholder: |
+        1.  
+    validations:
+      required: false

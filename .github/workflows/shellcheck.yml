@@ -1,0 +1,26 @@
+name: shellcheck
+
+on:
+  push:
+
+jobs:
+  ShellCheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: shellcheck
+        uses: sudo-bot/action-shellcheck@latest
+        with:
+          cli-args:   -S error installer.sh
+          
+      - name: Download Artifact
+        uses: actions/download-artifact@v3.0.0
+        with:
+          path: ./*.sh
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: installer.sh
+          path: ./*.sh
