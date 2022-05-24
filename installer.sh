@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-#修改了tmoe的判断脚本，termux-container的日志脚本，故采用相同的许可证：https://github.com/2moe/tmoe-linux/blob/master/share/old-version/share/app/manager#L158   https://github.com/Moe-hacker/termux-container/blob/b75792884bfe5e7c647a9c64abc22c514485e76/container-zh#L26
+#修改了tmoe的判断脚本，termux-container的日志脚本（archived）故采用相同的许可证：https://github.com/2moe/tmoe-linux/blob/master/share/old-version/share/app/manager#L158
 rm $PREFIX/var/log/msf.log > /dev/null 2>&1
 export LOG_FILE="/data/data/com.termux/files/usr/var/log/msf.log"
 LOG_HEAD(){
