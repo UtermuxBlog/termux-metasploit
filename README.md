@@ -13,5 +13,5 @@ chmod +x installer.sh
 
 - [X] MSF latest
 - [ ] **Sqlite3**
-- [X] Succeed install Nokogiri `1.8.0`
+- [X] Nokogiri `1.8.0`
 - [X] GUI(whiptail)
