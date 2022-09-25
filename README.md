@@ -3,8 +3,15 @@
 
 # 安装  
 ```shell
-pkg install wget 
+pkg install wget -y
 wget https://ghproxy.com/github.com/UtermuxBlog/termux-metasploit/raw/main/installer.sh
 chmod +x installer.sh
 ./installer.sh
 ```
+
+# 功能
+
+- [X] MSF latest
+- [ ] **Sqlite3**
+- [X] Succeed install Nokogiri `1.8.0`
+- [X] GUI(whiptail)
