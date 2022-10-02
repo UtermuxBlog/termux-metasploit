@@ -12,6 +12,6 @@ chmod +x installer.sh
 # 功能
 
 - [X] MSF latest
-- [ ] **Sqlite3**
+- [X] Sqlite3
 - [X] Nokogiri `1.8.0`
 - [X] GUI(whiptail)
