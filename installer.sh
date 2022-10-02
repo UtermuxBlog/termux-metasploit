@@ -59,7 +59,7 @@ LOG "安装软件包"
 
 {
 	pkg upgrade -y > /dev/null 2>&1
-        pkg install -y libsqlite git cmake binutils autoconf bison clang coreutils curl libandroid-support dnsutils findutils apr apr-util postgresql openssl openssl-1.1 openssl-tool openssl1.1-tool readline libffi libgmp libpcap libsqlite libgrpc libtool libxml2 libxslt ncurses make ncurses-utils ncurses git wget unzip zip tar termux-tools termux-elf-cleaner pkg-config git ruby -o Dpkg::Options::="--force-confnew" > /dev/null 2>&1
+        pkg install -y libsqlite git cmake binutils autoconf bison clang coreutils curl libandroid-support dnsutils findutils apr apr-util postgresql openssl openssl-1.1 openssl-tool openssl1.1-tool readline libffi libgmp libpcap libgrpc libtool libxml2 libxslt ncurses make ncurses-utils ncurses git wget unzip zip tar termux-tools termux-elf-cleaner pkg-config git ruby -o Dpkg::Options::="--force-confnew" > /dev/null 2>&1
 } | whiptail --backtitle "项目地址：github.com/UtermuxBlog/termux-metasploit" --title "安装软件包" --gauge "🚀请耐心等待软件包安装完成..." 0 50 0  
 LOG "fix-ruby-bigdecimal"
 {
@@ -96,6 +96,9 @@ LOG "安装gem"
 {
         cd $PREFIX/opt/metasploit-framework
         gem install actionpack 
+        gem uninstall sqlite3 --all --force > /dev/null
+        bundle config build.sqlite3 -- --use-system-libraries
+        gem install sqlite3
 	gem install bundler > /dev/null
         bundle update activesupport > /dev/null
 	bundle config build.nokogiri --use-system-libraries > /dev/null
@@ -112,8 +115,6 @@ pkg i gcc-11 -y > /dev/null 2>&1
 wget -q https://mirrors.utermux.dev/nokogiri/nokogiri_1.8.0_aarch64_ruby3.gem > /dev/null 2>&1
 gem install --local nokogiri_1.8.0_aarch64_ruby3.gem -- --use-system-libraries --with-xml2-config=$PREFIX/bin/xml2-config --with-xslt-config=$PREFIX/bin/xslt-config > /dev/null
 pkg rem gcc-11 tur-repo -y > /dev/null 2>&1
-LOG "卸载sqlite3"
-gem uninstall sqlite3 --all --force > /dev/null
 
 LOG "shebang"
 {
@@ -126,8 +127,6 @@ LOG "修复"
 	#sed -i 's/.*sqlite3.*//g' $PREFIX/opt/metasploit-framework/Gemfile.lock
 	#rm /data/data/com.termux/files/usr/opt/metasploit-framework/lib/msf/core/post/windows/packrat.rb
 	#sed -i 's/.*sqlite3.*//g' $PREFIX/opt/metasploit-framework/metasploit-framework.gemspec
-	gem uninstall sqlite3 --force
-	gem install sqlite3
         cp -r "$PREFIX"/lib/openssl-1.1/* "$PREFIX"/lib/
         sed -i "s@/etc/resolv.conf@$PREFIX/etc/resolv.conf@g" $PREFIX/opt/metasploit-framework/lib/net/dns/resolver.rb > /dev/null 2>&1
         find $PREFIX/opt/metasploit-framework -type f -executable -print0 | xargs -0 -r termux-fix-shebang
