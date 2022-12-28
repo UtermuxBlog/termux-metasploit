@@ -1,0 +1,16 @@
+--- shell.rb
++++ shell.rb.orig
+@@ -123,10 +123,10 @@
+   #
+   def run(&block)
+     begin
+-      require 'pry'
++      #require 'pry'
+       # pry history will not be loaded by default when pry is used as a breakpoint like `binding.pry`
+       Pry.config.history_load = false
+-    rescue LoadError
++    #rescue LoadError
+       # Pry is a development dependency, if not available suppressing history_load can be safely ignored.
+     end
+ 
+
