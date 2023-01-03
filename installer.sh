@@ -104,8 +104,12 @@ LOG "安装gem"
 	bundle config build.nokogiri "--enable-system-libraries --with-xml2-config=$PREFIX/bin/xml2-config --with-xslt-config=$PREFIX/bin/xslt-config --with-opt-include=$PREFIX/include/ruby-3.2.0/" > /dev/null
 	gem install mini_portile2 -v 2.7.0
         bundle update --bundler > /dev/null 2>&1
+	gem uninstall pry --force --all > /dev/null
+	gem install pry -v 0.14.1
+	sed -i 's/pry (0.13.1)/pry (0.14.1)/g' Gemfile.lock
+	sed -i 's/pry (~> 0.13.0)/pry (~> 0.14.0)/g' Gemfile.lock
+	gem install net-smtp profiler
         bundle install -j$(nproc --all) > /dev/null 2>&1
-        gem install net-smtp profiler
           
 } | whiptail --backtitle "项目地址：github.com/UtermuxBlog/termux-metasploit" --title "安装Gems" --gauge "🚀这里比较久，请耐心等待..." 0 50 0 
 
@@ -132,10 +136,7 @@ LOG "修复"
         sed -i '86 {s/^/#/};96 {s/^/#/}' $PREFIX/lib/ruby/gems/3.1.0/gems/concurrent-ruby-1.0.5/lib/concurrent/atomic/ruby_thread_local_var.rb > /dev/null
         sed -i '13,15 {s/^/#/}' /data/data/com.termux/files/usr/lib/ruby/gems/3.1.0/gems/hrr_rb_ssh-0.4.2/lib/hrr_rb_ssh/transport/encryption_algorithm/functionable.rb; sed -i '14 {s/^/#/}' /data/data/com.termux/files/usr/lib/ruby/gems/3.1.0/gems/hrr_rb_ssh-0.4.2/lib/hrr_rb_ssh/transport/server_host_key_algorithm/ecdsa_sha2_nistp256.rb; sed -i '14 {s/^/#/}' /data/data/com.termux/files/usr/lib/ruby/gems/3.1.0/gems/hrr_rb_ssh-0.4.2/lib/hrr_rb_ssh/transport/server_host_key_algorithm/ecdsa_sha2_nistp384.rb; sed -i '14 {s/^/#/}' /data/data/com.termux/files/usr/lib/ruby/gems/3.1.0/gems/hrr_rb_ssh-0.4.2/lib/hrr_rb_ssh/transport/server_host_key_algorithm/ecdsa_sha2_nistp521.rb
         cp -r "$PREFIX"/lib/openssl-1.1/* "$PREFIX"/lib/
-	cd $PREFIX/opt/metasploit-framework/lib/rex/ui/text/ > /dev/null 2>&1
-	wget -q ${mirror}/UtermuxBlog/termux-metasploit/raw/main/pry.patch > /dev/null 2>&1
-	patch -p0 < pry.patch
-	rm -f pry.patch > /dev/null 2>&1
+	
 } | whiptail --backtitle "项目地址：github.com/UtermuxBlog/termux-metasploit" --title "修复" --gauge "🔨进行一些必要的修复..." 0 50 0 
 LOG "psql数据库"
 {
