@@ -35,14 +35,14 @@ pkg install curl wget git -y > /dev/null 2>&1
 LOG "源选择"
 mirror=$(whiptail --title "github源选择" --menu "请选择github源" 15 6 4 \
 "1" "github" \
-"2" "fastgit" \
+"2" "kgithub" \
 "3" "91chi" \
 "4" "ghproxy" \
 3>&1 1>&2 2>&3)
 
 case $mirror in
 1) export mirror=https://github.com ;;
-2) export mirror=https://hub.fastgit.xyz ;;
+2) export mirror=https://kgithub.com ;;
 3) export mirror=https://github.91chi.fun/https://github.com ;;
 4) export mirror=https://ghproxy.com/https://github.com ;;
 "") LOG_END && exit  ;;
