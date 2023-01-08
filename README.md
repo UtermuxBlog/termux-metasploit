@@ -1,5 +1,5 @@
 ![](https://opengraph.githubassets.com/0/UtermuxBlog/termux-metasploit)
-![shellcheck](https://img.shields.io/github/workflow/status/UtermuxBlog/termux-metasploit/shellcheck?style=flat-square)![lang](https://img.shields.io/github/languages/top/UtermuxBlog/termux-metasploit?style=flat-square)![issues](https://img.shields.io/github/issues/UtermuxBlog/termux-metasploit?style=flat-square)![LICENSE](https://img.shields.io/github/license/UtermuxBlog/termux-metasploit?style=flat-square)![PR](https://img.shields.io/github/issues-pr/UtermuxBlog/termux-metasploit?style=flat-square)![ds](https://img.shields.io/github/discussions/UtermuxBlog/termux-metasploit?style=flat-square)
+![shellcheck](https://img.shields.io/github/actions/workflow/status/UtermuxBlog/termux-metasploit/.github/workflows/shellcheck.yml?style=flat-square&branch=main)![lang](https://img.shields.io/github/languages/top/UtermuxBlog/termux-metasploit?style=flat-square)![issues](https://img.shields.io/github/issues/UtermuxBlog/termux-metasploit?style=flat-square)![LICENSE](https://img.shields.io/github/license/UtermuxBlog/termux-metasploit?style=flat-square)![PR](https://img.shields.io/github/issues-pr/UtermuxBlog/termux-metasploit?style=flat-square)![ds](https://img.shields.io/github/discussions/UtermuxBlog/termux-metasploit?style=flat-square)
 
 # 安装  
 ```shell
