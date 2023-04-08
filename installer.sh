@@ -100,7 +100,6 @@ LOG "安装gem"
         bundle config build.sqlite3 -- --use-system-libraries
         gem install sqlite3
 	gem install bundler > /dev/null
-        bundle update activesupport > /dev/null
 	bundle config build.nokogiri "--enable-system-libraries --with-xml2-config=$PREFIX/bin/xml2-config --with-xslt-config=$PREFIX/bin/xslt-config --with-opt-include=$PREFIX/include/ruby-3.2.2/" > /dev/null
 	gem install mini_portile2 -v 2.7.0
         bundle update --bundler > /dev/null 2>&1
