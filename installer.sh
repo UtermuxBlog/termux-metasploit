@@ -95,6 +95,7 @@ esac
 LOG "安装gem"
 {
         cd $PREFIX/opt/metasploit-framework
+	export CFLAGS+=" -Wno-incompatible-function-pointer-types"
         gem install actionpack 
         gem uninstall sqlite3 --all --force > /dev/null
         bundle config build.sqlite3 -- --use-system-libraries
