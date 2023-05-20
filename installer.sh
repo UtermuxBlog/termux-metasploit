@@ -59,7 +59,7 @@ LOG "安装软件包"
 
 {
 	pkg upgrade -y > /dev/null 2>&1
-        pkg install -y sqlite libsqlite git cmake binutils autoconf bison clang coreutils curl libandroid-support dnsutils findutils apr apr-util postgresql openssl openssl-1.1 openssl-tool openssl1.1-tool readline libffi libgmp libpcap libgrpc libtool libxml2 libxslt ncurses make ncurses-utils ncurses git wget unzip zip tar termux-tools termux-elf-cleaner pkg-config git ruby -o Dpkg::Options::="--force-confnew" > /dev/null 2>&1
+        pkg install -y libiconv* sqlite libsqlite git cmake binutils autoconf bison clang coreutils curl libandroid-support dnsutils findutils apr apr-util postgresql openssl openssl-1.1 openssl-tool openssl1.1-tool readline libffi libgmp libpcap libgrpc libtool libxml2 libxslt ncurses make ncurses-utils ncurses git wget unzip zip tar termux-tools termux-elf-cleaner pkg-config git ruby -o Dpkg::Options::="--force-confnew" > /dev/null 2>&1
 } | whiptail --backtitle "项目地址：github.com/UtermuxBlog/termux-metasploit" --title "安装软件包" --gauge "🚀请耐心等待软件包安装完成..." 0 50 0  
 LOG "fix-ruby-bigdecimal"
 {
@@ -157,14 +157,14 @@ pg_ctl -D "$PREFIX"/var/lib/postgresql stop > /dev/null 2>&1 || true
 if ! pg_ctl -D "$PREFIX"/var/lib/postgresql start --silent; then
         initdb "$PREFIX"/var/lib/postgresql
 fi
-pg_ctl -D $PREFIX/var/lib/postgresql -l logfile start
+# pg_ctl -D $PREFIX/var/lib/postgresql -l logfile start
 if [ -z "$(psql postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='msf'")" ]; then
         createuser msf
 fi
 if [ -z "$(psql -l | grep msf_database)" ]; then
         createdb msf_database
 fi
-pg_ctl -D /data/data/com.termux/files/usr/var/lib/postgresql -l logfile start
+# pg_ctl -D /data/data/com.termux/files/usr/var/lib/postgresql -l logfile start
 LOG "清除缓存"
 {
         rm -rf $HOME/.bundle/cache/* > /dev/null 2>&1
