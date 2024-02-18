@@ -44,7 +44,7 @@ case $mirror in
 1) export mirror=https://github.com ;;
 2) export mirror=https://kgithub.com ;;
 3) export mirror=https://github.91chi.fun/https://github.com ;;
-4) export mirror=https://ghproxy.com/https://github.com ;;
+4) export mirror=https://mirror.ghproxy.com/https://github.com ;;
 "") LOG_END && exit  ;;
 esac
 LOG "EULA"
@@ -86,7 +86,7 @@ rubymirror=$(whiptail --title "rubygems源选择" --menu "请选择rubygems源" 
 3>&1 1>&2 2>&3)
 
 case $rubymirror in
-1) LOG "rubychina" && gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/ > /dev/null 2>&1 && bundle config mirror.https://rubygems.org https://gems.ruby-china.com > /dev/null 2>&1 ;;
+1) LOG "rubychina" && wget https://rubygems.org/gems/rubygems-update-3.5.6.gem > /dev/null 2>&1 && gem install rubygems-update-3.5.6.gem > /dev/null 2>&1 && bundle config mirror.https://rubygems.org https://gems.ruby-china.com > /dev/null 2>&1 ;;
 2) LOG "TUNA" && gem sources --add https://mirrors.tuna.tsinghua.edu.cn/rubygems/ --remove https://rubygems.org/ > /dev/null 2>&1 && bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems > /dev/null 2>&1 ;;
 3) LOG "HIT" && gem sources --add https://mirrors.hit.edu.cn/rubygems/ --remove https://rubygems.org/ > /dev/null 2>&1 && bundle config mirror.https://rubygems.org https://mirrors.hit.edu.cn/rubygems/ > /dev/null 2>&1 ;;
 4) LOG "ustc" && gem sources --add https://mirrors.ustc.edu.cn/rubygems/ --remove https://rubygems.org/ > /dev/null 2>&1 && bundle config mirror.https://rubygems.org https://mirrors.ustc.edu.cn/rubygems/ > /dev/null 2>&1 ;;
@@ -102,6 +102,8 @@ LOG "安装gem"
         gem install sqlite3
 	gem install bundler > /dev/null
 	bundle config build.nokogiri "--enable-system-libraries --with-xml2-config=$PREFIX/bin/xml2-config --with-xslt-config=$PREFIX/bin/xslt-config --with-opt-include=$PREFIX/include/ruby-3.2.2/" > /dev/null
+        export LDFLAGS+=" -liconv"
+        export CFLAGS+=" -Wno-incompatible-function-pointer-types"
 	gem install mini_portile2 -v 2.7.0
         bundle update --bundler > /dev/null 2>&1
 	gem uninstall pry --force --all > /dev/null
